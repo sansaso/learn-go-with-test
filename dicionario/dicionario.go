@@ -1,0 +1,22 @@
+package main
+
+import "errors"
+
+type Dicionario map[string]string
+
+var errNaoEncontrado = errors.New("não foi possível encontrar a palavra que você procura")
+
+func (d Dicionario) Busca(palavra string) (string, error) {
+
+	definicao, existe := d[palavra]
+
+	if !existe {
+		return "", errNaoEncontrado
+	}
+
+	return definicao, nil
+}
+
+func (d Dicionario) Adiciona(palavra, definicao string) {
+	d[palavra] = definicao
+}
